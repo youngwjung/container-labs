@@ -11,3 +11,7 @@ terraform {
 module "intro_container" {
   source = "./intro-container"
 }
+
+module "swarm_cluster" {
+  source = "./swarm-cluster"
+}
