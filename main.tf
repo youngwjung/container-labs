@@ -15,3 +15,7 @@ module "intro_container" {
 module "swarm_cluster" {
   source = "./swarm-cluster"
 }
+
+module "kubernetes" {
+  source = "./kubernetes"
+}
