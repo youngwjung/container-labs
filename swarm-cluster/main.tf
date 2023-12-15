@@ -23,8 +23,6 @@ module "vpc" {
 
 # EC2
 resource "random_password" "this" {
-  count = var.number_of_stduents
-
   length  = 8
   special = false
 }
