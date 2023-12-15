@@ -22,6 +22,11 @@ module "vpc" {
 }
 
 # EC2
+resource "random_password" "this" {
+  length  = 8
+  special = false
+}
+
 resource "aws_security_group" "this" {
   name        = "${local.name}-sg"
   description = "${local.name}-sg"
@@ -70,7 +75,7 @@ resource "aws_instance" "this" {
   ]
   user_data = <<EOF
 #!/bin/bash
-echo 'ubuntu:asdf1234' | chpasswd
+echo "ubuntu:${random_password.this.result}" | chpasswd
 sed 's/PasswordAuthentication no/PasswordAuthentication yes/' -i /etc/ssh/sshd_config
 sed 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' -i /etc/ssh/sshd_config
 systemctl restart sshd
